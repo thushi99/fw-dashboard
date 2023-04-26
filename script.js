@@ -42,3 +42,7 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+function myFunction() {
+	confirm("Are you sure want to shutdown the Device?");
+  }

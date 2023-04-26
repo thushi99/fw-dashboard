@@ -9,8 +9,38 @@
 	<!-- My CSS -->
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+	<!--MODAL-->
+	
+
 	<link rel="stylesheet" href="./style2.css">
 	<link rel="stylesheet" href="./modal.css">
+	<script>
+		function onDelete() {
+		  let confirmation = document.getElementById("confirmation");
+		  if (!confirmation.classList.contains("modal-open")) {
+			confirmation.classList.add("modal-open");
+		  }
+		}
+	
+		function onCancel() {
+		  let confirmation = document.getElementById("confirmation");
+		  confirmation.classList.remove("modal-open");
+		}
+	
+		function onConfirm() {
+		  onCancel();
+		}
+	
+		document.addEventListener("DOMContentLoaded", () => {
+		  document
+			.getElementById("confirmation")
+			.addEventListener("click", onCancel);
+		  document
+			.querySelector(".modal")
+			.addEventListener("click", (e) => e.stopPropagation());
+		});
+	  </script>
 
 	<title>AdminHub</title>
 </head>
@@ -77,7 +107,7 @@
 
 					
 					<div class="server-list">
-						<div class="server">
+						<div class="server" id="delete" name="delete" onclick="myFunction()">
 							<div class="server-icon fa fa-globe"></div> 
 							<ul class="server-details">
 								<li>Hostname:<span class="data">Hello</span></li>
@@ -193,22 +223,30 @@
 					<!--SERVERS LIST END-->
 
 					<!--MODAL-->
-					<button onclick="document.getElementById('id01').style.display='block'">Open Modal</button>
-					<div id="id01" class="modal">
-						<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-						<form class="modal-content" action="/action_page.php">
-						  <div class="container">
-							<h1>Delete Account</h1>
-							<p>Are you sure you want to delete your account?</p>
-					  
-							<div class="clearfix">
-							  <button type="button" class="cancelbtn">Cancel</button>
-							  <button type="button" class="deletebtn">Delete</button>
+						<div id="confirmation" class="modal-container">
+							<div class="modal">
+								<section>
+									<header class="modal-header">
+										<h1>Confirm</h1>
+									</header>
+									<section class="modal-content">
+										<p>Are you sure you want to Shutdown?</p>
+										<p class="ip-addr">172.28.0.30</p>
+									</section>
+									<footer class="modal-footer">
+										<button class="modal-button" onclick="onCancel()">Cancel</button>
+										<button
+										class="modal-button modal-confirm-button"
+										onclick="onConfirm()"
+										>
+										Confirm
+										</button>
+									</footer>
+								</section>
 							</div>
-						  </div>
-						</form>
-					  </div>
-					  <!--MODAL END-->
+						</div>
+					<!--MODAL END-->
+					
 
 
 					<!--<table>
